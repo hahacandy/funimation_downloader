@@ -113,14 +113,15 @@ def download_funimation_anime(driver, anime_url, save_path):
 
                 if vtt_url != None and m3u8_url != None:
 
-                    save_path2 = save_path + anime_name + '/'
                     vtt_name = str(idx) + '_' + anime_episode['name'] + '.vtt'
                     video_name = str(idx) + '_' + anime_episode['name'] + '.mp4'
                     
                     #ファイルをセーブするときエラーを避けるため
-                    save_path2 = re.sub(r'[\\/:*?"<>|]', '', save_path2)
+                    anime_name = re.sub(r'[\\/:*?"<>|]', '', save_path2)
                     vtt_name = re.sub(r'[\\/:*?"<>|]', '', vtt_name)
                     video_name = re.sub(r'[\\/:*?"<>|]', '', video_name)
+                    
+                    save_path2 = save_path + anime_name + '/'
 
                     createFolder(save_path2)
 
