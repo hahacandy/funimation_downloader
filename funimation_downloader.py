@@ -160,7 +160,7 @@ user_passwd = input('Input Funimation passwd: ')
 
 anime_url = input('Input Funimation Anime URL: ')
 
-save_path = 'Y:/Eng_Animes/'
+save_path = 'Downloaded/'
 
 
 
