@@ -7,6 +7,7 @@ import requests
 import threading
 import re
 from vtt_to_srt.vtt_to_srt import vtt_to_srt
+from datetime import datetime
 
 
 
@@ -131,7 +132,7 @@ def download_funimation_anime(driver, anime_url, save_path):
                     modify_srt_for_videostation(save_path2 + srt_name)
                     modify_m3u8(save_path2 + m3u8_name)
 
-                    cmd = 'ffmpeg -y -protocol_whitelist file,http,https,tcp,tls,crypto' + ' -i \"' + save_path2 + m3u8_name + '\" -vcodec copy -acodec copy "' + save_path2 + video_name + '"'
+                    cmd = 'ffmpeg -y -protocol_whitelist file,http,https,tcp,tls,crypto' + ' -i \"' + save_path2 + m3u8_name + '\" -vcodec copy -acodec copy '+ "-metadata creation_time='" + str(datetime.now()) + "'" + ' "' + save_path2 + video_name + '"'
 
                     print(idx, anime_episode['name'])
                     print(vtt_url)
