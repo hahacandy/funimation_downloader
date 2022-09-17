@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 import time
 import os
 import requests
-import threading
 import re
 from vtt_to_srt.vtt_to_srt import vtt_to_srt
 from datetime import datetime
@@ -140,13 +139,9 @@ def download_funimation_anime(driver, anime_url, save_path):
                     print(cmd)
                     print()
                     
-                    #幾つかのアニメを同時にダウンロードするため
-                    t = threading.Thread(target=download_funimation_anime2, args=(cmd,save_path2 + m3u8_name))
-                    t.daemon = True 
-                    t.start()
-                    thread_list.append(t)     
-
-
+                    os.system(cmd)
+                    os.remove(file_name)
+                    
                     is_break = True
                     break
 
@@ -162,9 +157,7 @@ def download_funimation_anime(driver, anime_url, save_path):
 
     print(anime_name + " all ani download complete")
 
-def download_funimation_anime2(cmd, file_name):
-    os.system(cmd)
-    os.remove(file_name)
+
 
 def modify_m3u8(file_name):
 
